@@ -7,6 +7,9 @@ import NotFound from "./pages/NotFound";
 
 const Flights = lazy(() => import("./pages/Flights"));
 const Taxis = lazy(() => import("./pages/Taxis"));
+const FlightCompensation = lazy(() => import("./pages/FlightCompensation"));
+const Rentals = lazy(() => import("./pages/Rentals"));
+const Esim = lazy(() => import("./pages/Esim"));
 const Experiences = lazy(() => import("./pages/Experiences"));
 const Deals = lazy(() => import("./pages/Deals"));
 const PlanTrip = lazy(() => import("./pages/PlanTrip"));
@@ -43,7 +46,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/flights" element={<Flights />} />
+            <Route path="/flight-compensation" element={<FlightCompensation />} />
             <Route path="/taxis" element={<Taxis />} />
+            <Route path="/rentals" element={<Rentals />} />
+            <Route path="/esim" element={<Esim />} />
             <Route path="/hotels" element={<Navigate to="/taxis" replace />} />
             <Route path="/experiences" element={<Experiences />} />
             <Route path="/deals" element={<Deals />} />

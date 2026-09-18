@@ -35,18 +35,20 @@ function Flights() {
 
       <section className="section-sm">
         <div className="container mx-auto">
-          <div className="flight-compensation-frame-wrap">
-            <iframe
-              className="flight-compensation-frame"
-              src="/flight-compensation-widget.html"
-              title="Flight compensation"
-              loading="lazy"
-            />
+          <div className="flight-compensation-card">
+            <div>
+              <p className="eyebrow">Flight protection</p>
+              <h2 className="heading-h2 mt-2">Delayed or canceled flight?</h2>
+              <p className="text-lead mt-3">
+                You may be entitled to compensation. See how much you could claim and get help with the process.
+              </p>
+            </div>
+            <a className="btn btn-primary btn-lg" href="#/flight-compensation">
+              Check compensation
+            </a>
           </div>
         </div>
       </section>
-
-
     </>
   );
 }

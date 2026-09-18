@@ -23,6 +23,8 @@ function Footer() {
               <li><Link to="/destinations" className="footer-link">Destinations</Link></li>
               <li><Link to="/flights" className="footer-link">Flights</Link></li>
               <li><Link to="/taxis" className="footer-link">Taxis</Link></li>
+              <li><Link to="/rentals" className="footer-link">Rentals</Link></li>
+              <li><Link to="/esim" className="footer-link">eSIM</Link></li>
               <li><Link to="/experiences" className="footer-link">Experiences</Link></li>
               <li><Link to="/itineraries" className="footer-link">Itineraries</Link></li>
               <li><Link to="/deals" className="footer-link">Deals</Link></li>

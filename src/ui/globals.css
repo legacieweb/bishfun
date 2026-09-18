@@ -137,6 +137,23 @@
     height: 260px;
     border: 0;
   }
+  .flight-compensation-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2rem;
+    border: 1px solid #F4C8BC;
+    border-radius: 0.75rem;
+    background: #FFF1EC;
+  }
+  .eyebrow {
+    color: #C94738;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
   .taxi-widget-frame {
     display: block;
     width: 100%;
@@ -144,10 +161,51 @@
     border: 0;
     background: white;
   }
+  .rental-panel {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #E4E4E4;
+    border-radius: 0.75rem;
+    background: white;
+  }
+  .rental-panel-heading { padding: 1.5rem; }
+  .rental-widget-frame {
+    display: block;
+    width: 100%;
+    height: 620px;
+    border: 0;
+    background: white;
+  }
+  .esim-widget-panel {
+    overflow: hidden;
+    border: 1px solid #E4E4E4;
+    border-radius: 0.75rem;
+    background: white;
+  }
+  .esim-widget-frame {
+    display: block;
+    width: 100%;
+    height: 640px;
+    border: 0;
+    background: white;
+  }
+  .esim-benefit-card {
+    padding: 2rem;
+    border: 1px solid #E4E4E4;
+    border-radius: 0.75rem;
+    background: white;
+  }
+  .esim-benefit-card-accent {
+    border-color: #F4C8BC;
+    background: #FFF1EC;
+  }
   @media (max-width: 640px) {
     .flight-search-frame { height: 900px; }
     .flight-compensation-frame { height: 300px; }
     .taxi-widget-frame { height: 760px; }
+    .flight-compensation-card { align-items: flex-start; flex-direction: column; }
+    .rental-widget-frame { height: 760px; }
+    .esim-widget-frame { height: 760px; }
   }
 
   /* Buttons */
