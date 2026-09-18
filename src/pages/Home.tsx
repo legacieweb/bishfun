@@ -250,12 +250,10 @@ function Home() {
             <h2 className="heading-h2">Flight Discovery</h2>
             <p className="text-gray-600 mt-2">Find your next journey with competitive flight options.</p>
           </div>
-          <Link to="/flights" className="block">
-            <div className="bg-gradient-to-r from-accent-subtle to-white rounded-xl p-6 md:p-8 border border-gray-200 hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Search Flights Worldwide</h3>
-              <p className="text-gray-600">Compare prices from hundreds of airlines through our Travelpayouts integration.</p>
-            </div>
-          </Link>
+          <div className="space-y-8">
+            <div id="tpwl-search" className="min-h-[220px] rounded-xl border border-gray-200 bg-white p-4 md:p-6" />
+            <div id="tpwl-tickets" className="min-h-[120px] rounded-xl border border-gray-200 bg-white p-4 md:p-6" />
+          </div>
         </div>
       </section>
 
