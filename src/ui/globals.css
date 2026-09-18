@@ -108,6 +108,26 @@
   @media (min-width: 768px) { .text-lead { font-size: 1.125rem; } }
   @media (min-width: 1024px) { .text-lead { font-size: 1.25rem; } }
 
+  .flight-search-section { overflow: hidden; }
+  .flight-widget-frame-wrap {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #E4E4E4;
+    border-radius: 0.75rem;
+    background: white;
+  }
+  .flight-widget-frame {
+    display: block;
+    width: 100%;
+    height: 760px;
+    border: 0;
+    background: white;
+  }
+  @media (max-width: 640px) {
+    .flight-widget-frame { height: 900px; }
+  }
+
   /* Buttons */
   .btn {
     display: inline-flex;
