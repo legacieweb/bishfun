@@ -12,7 +12,7 @@ const baseUrl = `https://${brandConfig.domain}`;
 const urls: string[] = [
   "",
   "/flights",
-  "/hotels",
+  "/taxis",
   "/experiences",
   "/deals",
   "/plan",

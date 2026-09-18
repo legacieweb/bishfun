@@ -124,8 +124,30 @@
     border: 0;
     background: white;
   }
+  .flight-search-frame { height: 760px; }
+  .flight-compensation-frame-wrap {
+    overflow: hidden;
+    border: 1px solid #F4C8BC;
+    border-radius: 0.75rem;
+    background: #FFF1EC;
+  }
+  .flight-compensation-frame {
+    display: block;
+    width: 100%;
+    height: 260px;
+    border: 0;
+  }
+  .taxi-widget-frame {
+    display: block;
+    width: 100%;
+    height: 620px;
+    border: 0;
+    background: white;
+  }
   @media (max-width: 640px) {
-    .flight-widget-frame { height: 900px; }
+    .flight-search-frame { height: 900px; }
+    .flight-compensation-frame { height: 300px; }
+    .taxi-widget-frame { height: 760px; }
   }
 
   /* Buttons */

@@ -22,7 +22,7 @@ function Footer() {
             <ul className="space-y-2 text-sm">
               <li><Link to="/destinations" className="footer-link">Destinations</Link></li>
               <li><Link to="/flights" className="footer-link">Flights</Link></li>
-              <li><Link to="/hotels" className="footer-link">Hotels</Link></li>
+              <li><Link to="/taxis" className="footer-link">Taxis</Link></li>
               <li><Link to="/experiences" className="footer-link">Experiences</Link></li>
               <li><Link to="/itineraries" className="footer-link">Itineraries</Link></li>
               <li><Link to="/deals" className="footer-link">Deals</Link></li>

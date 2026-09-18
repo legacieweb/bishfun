@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Navigate, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { lazy, Suspense, useEffect } from "react";
 import Layout from "./ui/components/layout/Layout";
@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 
 const Flights = lazy(() => import("./pages/Flights"));
-const Hotels = lazy(() => import("./pages/Hotels"));
+const Taxis = lazy(() => import("./pages/Taxis"));
 const Experiences = lazy(() => import("./pages/Experiences"));
 const Deals = lazy(() => import("./pages/Deals"));
 const PlanTrip = lazy(() => import("./pages/PlanTrip"));
@@ -43,7 +43,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/flights" element={<Flights />} />
-            <Route path="/hotels" element={<Hotels />} />
+            <Route path="/taxis" element={<Taxis />} />
+            <Route path="/hotels" element={<Navigate to="/taxis" replace />} />
             <Route path="/experiences" element={<Experiences />} />
             <Route path="/deals" element={<Deals />} />
             <Route path="/plan" element={<PlanTrip />} />

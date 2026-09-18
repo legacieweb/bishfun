@@ -58,24 +58,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Flight Search */}
-      <section className="flight-search-section section-sm bg-white">
-        <div className="container mx-auto">
-          <div className="mb-8">
-            <h2 className="heading-h2">Flight Search</h2>
-            <p className="text-gray-600 mt-2">Find the best flight options for your next journey.</p>
-          </div>
-          <div className="flight-widget-frame-wrap">
-            <iframe
-              className="flight-widget-frame"
-              src="/travelpayouts-flight-widget.html"
-              title="Flight search"
-              loading="eager"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Trending Destinations */}
       <section className="section">
         <div className="container mx-auto">
