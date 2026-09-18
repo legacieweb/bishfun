@@ -1,18 +1,18 @@
 import type { Experience, ExperienceCategory } from "@/types";
 
-export const experienceCategories: { slug: ExperienceCategory; name: string; icon: string }[] = [
-  { slug: "adventure", name: "Adventure", icon: "🏔️" },
-  { slug: "beach", name: "Beach", icon: "🏖️" },
-  { slug: "culture", name: "Culture", icon: "🏛️" },
-  { slug: "food", name: "Food", icon: "🍽️" },
-  { slug: "nature", name: "Nature", icon: "🌲" },
-  { slug: "wildlife", name: "Wildlife", icon: "🦁" },
-  { slug: "city", name: "City", icon: "🏙️" },
-  { slug: "family", name: "Family", icon: "👨‍👩‍👧" },
-  { slug: "luxury", name: "Luxury", icon: "💎" },
-  { slug: "nightlife", name: "Nightlife", icon: "🌃" },
-  { slug: "wellness", name: "Wellness", icon: "🧘" },
-  { slug: "sports", name: "Sports", icon: "⚽" },
+export const experienceCategories: { slug: ExperienceCategory; name: string }[] = [
+  { slug: "adventure", name: "Adventure" },
+  { slug: "beach", name: "Beach" },
+  { slug: "culture", name: "Culture" },
+  { slug: "food", name: "Food" },
+  { slug: "nature", name: "Nature" },
+  { slug: "wildlife", name: "Wildlife" },
+  { slug: "city", name: "City" },
+  { slug: "family", name: "Family" },
+  { slug: "luxury", name: "Luxury" },
+  { slug: "nightlife", name: "Nightlife" },
+  { slug: "wellness", name: "Wellness" },
+  { slug: "sports", name: "Sports" },
 ];
 
 export const experiences: Experience[] = [

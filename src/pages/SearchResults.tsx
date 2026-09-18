@@ -1,8 +1,9 @@
 import { useLocation, Link } from "react-router-dom";
 import SEO from "@/ui/components/shared/Seo";
 import { brandConfig } from "@/config/brand";
-import { DestinationCard } from "@/ui/components/shared/Cards";
+import { DestinationCard, ExperienceCard } from "@/ui/components/shared/Cards";
 import { allDestinations } from "@/data/destinations";
+import { experiences } from "@/data/experiences";
 import { guides } from "@/data/guides";
 import { itineraries } from "@/data/itineraries";
 
@@ -27,9 +28,23 @@ function SearchResults() {
     itineraries: itineraries.filter(
       (i) => matchesWords([i.title, i.description]),
     ),
+    experiences: experiences.filter((e) =>
+      matchesWords([
+        e.title,
+        e.description,
+        e.category,
+        e.destinationSlug,
+        ...e.travelStyle,
+        ...e.seo.keywords,
+      ]),
+    ),
   };
 
-  const total = results.destinations.length + results.guides.length + results.itineraries.length;
+  const total =
+    results.destinations.length +
+    results.guides.length +
+    results.itineraries.length +
+    results.experiences.length;
 
   return (
     <>
@@ -46,7 +61,7 @@ function SearchResults() {
           {query && (
             <p className="text-gray-600 mb-6">
               Found {results.destinations.length} destinations, {results.guides.length} guides,
-              and {results.itineraries.length} itineraries.
+              {results.itineraries.length} itineraries, and {results.experiences.length} experiences.
             </p>
           )}
 
@@ -113,6 +128,29 @@ function SearchResults() {
                           <div className="mt-2 text-xs text-gray-500">{it.days} days</div>
                         </Link>
                       </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {results.experiences.length > 0 && (
+                <div className="mb-8">
+                  <h2 className="heading-h3 mb-4">Experiences</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {results.experiences.slice(0, 6).map((experience) => (
+                      <ExperienceCard
+                        key={experience.slug}
+                        slug={experience.slug}
+                        title={experience.title}
+                        description={experience.description}
+                        image={experience.image}
+                        imageAlt={experience.imageAlt}
+                        category={experience.category}
+                        price={experience.price}
+                        currencySymbol={experience.currencySymbol}
+                        duration={experience.duration}
+                        isDemo={experience.isDemo}
+                      />
                     ))}
                   </div>
                 </div>

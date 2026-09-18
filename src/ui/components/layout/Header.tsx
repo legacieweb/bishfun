@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { DesktopNav } from "../navigation/NavMenu";
 import { MobileNav } from "../navigation/NavMenu";
@@ -8,6 +8,7 @@ import { brandConfig } from "@/config/brand";
 
 function Header() {
   usePageTracking();
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -32,6 +33,10 @@ function Header() {
 
         <SearchBox
           placeholder="Search destinations..."
+          onSearch={(query) => {
+            const trimmedQuery = query.trim();
+            if (trimmedQuery) navigate(`/search?q=${encodeURIComponent(trimmedQuery)}`);
+          }}
           className="hidden lg:flex flex-1 max-w-md mx-6"
         />
 
