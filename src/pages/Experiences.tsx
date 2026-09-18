@@ -9,18 +9,25 @@ function Experiences() {
   const [activeCategory, setActiveCategory] = useState<
     (typeof experienceCategories)[number]["slug"] | "all"
   >("all");
-  const beachWidgetRef = useRef<HTMLDivElement>(null);
+  const categoryWidgetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (activeCategory !== "beach") return;
+    const widgetUrls: Partial<Record<typeof activeCategory, string>> = {
+      beach:
+        "https://tpembd.com/content?currency=USD&trs=575237&shmarker=671328&product=1113039%2C1018926%2C993053%2C1091593%2C1055096%2C1113561%2C1024541%2C1020312%2C1123855%2C1094266%2C1119519%2C1054749%2C983517%2C1101222%2C1035180%2C1094495%2C1091620%2C1091862%2C1059768%2C1033997&language=en&layout=vertical&powered_by=true&campaign_id=89&promo_id=3948",
+      adventure:
+        "https://tpembd.com/content?currency=USD&trs=575237&shmarker=671328&product=1013451%2C1025947%2C975618%2C1032480%2C975455%2C1094112%2C1024579%2C1028026%2C1070299%2C1102940%2C1124299%2C1017376%2C1034605%2C975648%2C1007609%2C1095489%2C975362%2C1087081%2C974800%2C1111518&language=en&layout=vertical&powered_by=true&campaign_id=89&promo_id=3948",
+    };
+    const widgetUrl = widgetUrls[activeCategory];
+    if (!widgetUrl) return;
 
-    const container = beachWidgetRef.current;
+    const container = categoryWidgetRef.current;
     if (!container) return;
 
     const script = document.createElement("script");
     script.async = true;
     script.src =
-      "https://tpembd.com/content?currency=USD&trs=575237&shmarker=671328&product=1113039%2C1018926%2C993053%2C1091593%2C1055096%2C1113561%2C1024541%2C1020312%2C1123855%2C1094266%2C1119519%2C1054749%2C983517%2C1101222%2C1035180%2C1094495%2C1091620%2C1091862%2C1059768%2C1033997&language=en&layout=vertical&powered_by=true&campaign_id=89&promo_id=3948";
+      widgetUrl;
     script.charset = "utf-8";
     container.appendChild(script);
 
@@ -84,8 +91,8 @@ function Experiences() {
             )}
           </div>
 
-          {activeCategory === "beach" ? (
-            <div ref={beachWidgetRef} className="w-full overflow-hidden" />
+          {activeCategory === "beach" || activeCategory === "adventure" ? (
+            <div ref={categoryWidgetRef} className="w-full overflow-hidden" />
           ) : filtered.length === 0 ? (
             <p className="text-center text-gray-500 py-8">
               No experiences found in this category.

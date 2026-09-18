@@ -3,9 +3,24 @@ import SEO from "@/ui/components/shared/Seo";
 import { brandConfig } from "@/config/brand";
 import { DestinationCard, ExperienceCard } from "@/ui/components/shared/Cards";
 import { allDestinations } from "@/data/destinations";
+import { cities } from "@/data/destinations/cities";
+import { countries } from "@/data/destinations/countries";
+import { regions } from "@/data/destinations/regions";
 import { experiences } from "@/data/experiences";
 import { guides } from "@/data/guides";
 import { itineraries } from "@/data/itineraries";
+
+const getDestinationPath = (destinationSlug: string, countrySlug?: string): string => {
+  const city = cities.find((item) => item.slug === destinationSlug);
+  const country = countries.find((item) => item.slug === (countrySlug || city?.countrySlug));
+  const region = country ? regions.find((item) => item.slug === country.regionSlug) : undefined;
+
+  if (city && country && region) {
+    return `/destinations/${region.slug}/${country.slug}/${city.slug}`;
+  }
+
+  return "/destinations";
+};
 
 function SearchResults() {
   const location = useLocation();
@@ -88,7 +103,7 @@ function SearchResults() {
                         imageAlt={d.heroImageAlt}
                         tags={d.tags}
                         size="sm"
-                        to={d.countrySlug ? `/destinations/${d.countrySlug}/${d.slug}` : `/destinations/${d.slug}`}
+                        to={getDestinationPath(d.slug, d.countrySlug)}
                       />
                     ))}
                   </div>
