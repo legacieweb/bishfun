@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { DestinationCard, GuideCard, ItineraryCard, HotelCard, DealCard } from "@/ui/components/shared/Cards";
-import { TravelSearch } from "@/ui/components/search/TravelSearch";
 import { Newsletter } from "@/ui/components/newsletter/Newsletter";
 import SEO from "@/ui/components/shared/Seo";
 import { brandConfig } from "@/config/brand";
@@ -56,13 +55,6 @@ function Home() {
               Explore Destinations
             </Link>
           </div>
-        </div>
-      </section>
-
-      {/* Travel Search */}
-      <section className="section-sm bg-white">
-        <div className="container mx-auto">
-          <TravelSearch />
         </div>
       </section>
 
