@@ -3,7 +3,7 @@ services:
     name: bishfun
     runtime: static
     buildCommand: npm ci && npm run build
-    staticPublishPath: ./dist
+    staticPublishPath: dist
     pullRequestPreviewsEnabled: true
     envVars:
       - key: VITE_TRAVELPAYOUTS_PARTNER_ID
