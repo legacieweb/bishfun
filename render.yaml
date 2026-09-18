@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: bishfun
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    pullRequestPreviewsEnabled: true
+    envVars:
+      - key: VITE_TRAVELPAYOUTS_PARTNER_ID
+        sync: false
+      - key: VITE_TRAVELPAYOUTS_PROJECT_ID
+        sync: false
+      - key: VITE_TRAVELPAYOUTS_CURRENCY
+        value: USD
+      - key: VITE_TRAVELPAYOUTS_LOCALE
+        value: en
+      - key: VITE_TRAVELPAYOUTS_DRIVE_SCRIPT_URL
+        sync: false
+      - key: VITE_ANALYTICS_ID
+        sync: false
+      - key: VITE_SITE_URL
+        sync: false
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

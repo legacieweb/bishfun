@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /my-trips
+Disallow: /plan
+Disallow: /search
+Disallow: /api
+
+Sitemap: https://bishfun.com/sitemap.xml
