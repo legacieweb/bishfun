@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { DestinationCard, GuideCard, ItineraryCard, HotelCard, DealCard } from "@/ui/components/shared/Cards";
 import { Newsletter } from "@/ui/components/newsletter/Newsletter";
@@ -18,6 +19,25 @@ const getDestinationPath = (citySlug: string): string => {
 };
 
 function Home() {
+  const experiencesWidgetRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = experiencesWidgetRef.current;
+    if (!container) return;
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src =
+      "https://tpembd.com/content?currency=USD&trs=575237&shmarker=671328&product=989258%2C988367%2C1102719%2C974575%2C1062527%2C1015872%2C1115699%2C1054116%2C1053664%2C1129122&language=en&layout=vertical&powered_by=true&campaign_id=89&promo_id=3948";
+    script.charset = "utf-8";
+    container.appendChild(script);
+
+    return () => {
+      script.remove();
+      container.replaceChildren();
+    };
+  }, []);
+
   const {
     featuredDestinations,
     trendingDestinations,
@@ -180,12 +200,7 @@ function Home() {
           <div className="mb-8">
             <h2 className="heading-h2">Popular Experiences</h2>
           </div>
-          <div className="w-full overflow-hidden">
-            <script
-              async
-              src="https://tpemd.com/content?currency=USD&trs=571387&shmarker=464534&product=975208%2C974225%2C973977%2C1111286%2C1111408%2C993713%2C1129130%2C988367%2C1121146%2C977178&language=en&layout=vertical&powered_by=true&campaign_id=89&promo_id=3948"
-              charSet="utf-8"
-            />
+          <div ref={experiencesWidgetRef} className="w-full overflow-hidden">
           </div>
         </div>
       </section>

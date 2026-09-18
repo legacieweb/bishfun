@@ -10,22 +10,22 @@ function SearchResults() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get("q") || "";
+  const searchWords = query.toLowerCase().trim().split(/\s+/).filter(Boolean);
+
+  const matchesWords = (fields: string[]) => {
+    const searchableText = fields.join(" ").toLowerCase();
+    return searchWords.every((word) => searchableText.includes(word));
+  };
 
   const results = {
     destinations: allDestinations.filter(
-      (d) =>
-        d.name.toLowerCase().includes(query.toLowerCase()) ||
-        (d.countrySlug && d.countrySlug.toLowerCase().includes(query.toLowerCase())),
+      (d) => matchesWords([d.name, d.countrySlug || "", d.description, ...(d.tags || [])]),
     ),
     guides: guides.filter(
-      (g) =>
-        g.title.toLowerCase().includes(query.toLowerCase()) ||
-        g.description.toLowerCase().includes(query.toLowerCase()),
+      (g) => matchesWords([g.title, g.description]),
     ),
     itineraries: itineraries.filter(
-      (i) =>
-        i.title.toLowerCase().includes(query.toLowerCase()) ||
-        i.description.toLowerCase().includes(query.toLowerCase()),
+      (i) => matchesWords([i.title, i.description]),
     ),
   };
 
