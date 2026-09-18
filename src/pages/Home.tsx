@@ -5,6 +5,17 @@ import SEO from "@/ui/components/shared/Seo";
 import { brandConfig } from "@/config/brand";
 import { homepageData } from "@/data";
 import { regions } from "@/data/destinations/regions";
+import { cities } from "@/data/destinations/cities";
+import { countries } from "@/data/destinations/countries";
+
+const getDestinationPath = (citySlug: string): string => {
+  const city = cities.find((item) => item.slug === citySlug);
+  const country = city ? countries.find((item) => item.slug === city.countrySlug) : undefined;
+  const region = country ? regions.find((item) => item.slug === country.regionSlug) : undefined;
+
+  if (!city || !country || !region) return "/destinations";
+  return `/destinations/${region.slug}/${country.slug}/${city.slug}`;
+};
 
 function Home() {
   const {
@@ -70,6 +81,7 @@ function Home() {
               <DestinationCard
                 key={dest.slug}
                 slug={dest.slug}
+                to={getDestinationPath(dest.slug)}
                 name={dest.name}
                 subtitle={dest.countrySlug ? `${dest.countrySlug}` : undefined}
                 description={dest.description}
