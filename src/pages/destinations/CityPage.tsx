@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { cities, getCityBySlug } from "@/data/destinations/cities";
 import { countries } from "@/data/destinations/countries";
@@ -34,6 +35,15 @@ function CityPage() {
   const itineraries = getItinerariesByDestination(city.slug);
   const hotels = getHotelsByDestination(city.slug);
   const tracking = getTrackingForPage("destination_page", city.slug);
+
+  const destinationWidgetLocale: Record<string, { locale: string; cards: number }> = {
+    tokyo: { locale: "72181", cards: 35 },
+    paris: { locale: "66746", cards: 100 },
+    kyoto: { locale: "72420", cards: 13 },
+    rome: { locale: "71631", cards: 100 },
+    phuket: { locale: "78451", cards: 50 },
+  };
+  const destinationWidget = destinationWidgetLocale[city.slug];
 
   const { quickFacts } = (() => {
     const qf = {
@@ -149,23 +159,12 @@ function CityPage() {
         </div>
       </section>
 
-      {[
-        "tokyo",
-        "paris",
-        "kyoto",
-        "rome",
-        "phuket",
-      ].includes(city.slug) && (
+      {destinationWidget && (
         <section className="section-sm bg-gray-50">
           <div className="container mx-auto">
             <h2 className="heading-h2 mb-4">Things to do in {city.name}</h2>
             <div className="destination-widget-frame-wrap">
-              <iframe
-                className="destination-widget-frame"
-                src={`/destination-${city.slug}-widget.html`}
-                title={`Things to do in ${city.name}`}
-                loading="lazy"
-              />
+              <DestinationWidget locale={destinationWidget.locale} cards={destinationWidget.cards} />
             </div>
           </div>
         </section>
@@ -376,6 +375,27 @@ function CityPage() {
       </section>
     </>
   );
+}
+
+function DestinationWidget({ locale, cards }: { locale: string; cards: number }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container || container.querySelector("script")) return;
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.charset = "utf-8";
+    script.src = `https://tpembd.com/content?currency=USD&trs=575237&shmarker=671328&language=en&locale=${locale}&layout=responsive&cards=${cards}&powered_by=true&campaign_id=89&promo_id=3947`;
+    container.appendChild(script);
+
+    return () => {
+      container.replaceChildren();
+    };
+  }, [cards, locale]);
+
+  return <div ref={containerRef} className="destination-widget-mount" />;
 }
 
 export default CityPage;

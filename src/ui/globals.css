@@ -205,10 +205,19 @@
     border-radius: 0.75rem;
     background: white;
   }
-  .destination-widget-frame {
+  .destination-widget-mount {
+    min-height: 680px;
+    max-width: 100%;
+    overflow: hidden;
+    background: white;
+  }
+  .destination-widget-mount > * {
+    max-width: 100%;
+  }
+  .destination-widget-mount iframe {
     display: block;
     width: 100%;
-    height: 680px;
+    min-height: 640px;
     border: 0;
     background: white;
   }
@@ -219,7 +228,8 @@
     .flight-compensation-card { align-items: flex-start; flex-direction: column; }
     .rental-widget-frame { height: 760px; }
     .esim-widget-frame { height: 760px; }
-    .destination-widget-frame { height: 820px; }
+    .destination-widget-mount { min-height: 820px; }
+    .destination-widget-mount iframe { min-height: 780px; }
   }
 
   /* Buttons */
