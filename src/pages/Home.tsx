@@ -58,6 +58,20 @@ function Home() {
         </div>
       </section>
 
+      {/* Flight Search */}
+      <section className="section-sm bg-white">
+        <div className="container mx-auto">
+          <div className="mb-8">
+            <h2 className="heading-h2">Flight Search</h2>
+            <p className="text-gray-600 mt-2">Find the best flight options for your next journey.</p>
+          </div>
+          <div className="space-y-8">
+            <div id="tpwl-search" className="min-h-[220px] rounded-xl border border-gray-200 bg-white p-4 md:p-6" />
+            <div id="tpwl-tickets" className="min-h-[120px] rounded-xl border border-gray-200 bg-white p-4 md:p-6" />
+          </div>
+        </div>
+      </section>
+
       {/* Trending Destinations */}
       <section className="section">
         <div className="container mx-auto">
@@ -231,20 +245,6 @@ function Home() {
                 currencySymbol={itinerary.currencySymbol}
               />
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Flight Discovery */}
-      <section className="section bg-gray-50">
-        <div className="container mx-auto">
-          <div className="mb-8">
-            <h2 className="heading-h2">Flight Discovery</h2>
-            <p className="text-gray-600 mt-2">Find your next journey with competitive flight options.</p>
-          </div>
-          <div className="space-y-8">
-            <div id="tpwl-search" className="min-h-[220px] rounded-xl border border-gray-200 bg-white p-4 md:p-6" />
-            <div id="tpwl-tickets" className="min-h-[120px] rounded-xl border border-gray-200 bg-white p-4 md:p-6" />
           </div>
         </div>
       </section>
