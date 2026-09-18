@@ -149,6 +149,28 @@ function CityPage() {
         </div>
       </section>
 
+      {[
+        "tokyo",
+        "paris",
+        "kyoto",
+        "rome",
+        "phuket",
+      ].includes(city.slug) && (
+        <section className="section-sm bg-gray-50">
+          <div className="container mx-auto">
+            <h2 className="heading-h2 mb-4">Things to do in {city.name}</h2>
+            <div className="destination-widget-frame-wrap">
+              <iframe
+                className="destination-widget-frame"
+                src={`/destination-${city.slug}-widget.html`}
+                title={`Things to do in ${city.name}`}
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Where to Stay */}
       <section className="section">
         <div className="container mx-auto">
