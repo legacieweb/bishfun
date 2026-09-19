@@ -36,7 +36,12 @@ function CityPage() {
   const hotels = getHotelsByDestination(city.slug);
   const tracking = getTrackingForPage("destination_page", city.slug);
 
-  const destinationWidgetLocale: Record<string, { locale: string; cards: number }> = {
+  const destinationWidgetLocale: Record<string, {
+    locale?: string;
+    cards?: number;
+    layout?: "responsive" | "vertical";
+    products?: string;
+  }> = {
     tokyo: { locale: "72181", cards: 35 },
     paris: { locale: "66746", cards: 100 },
     kyoto: { locale: "72420", cards: 13 },
@@ -59,6 +64,34 @@ function CityPage() {
     wanaka: { locale: "220811", cards: 3 },
     "franz-josef": { locale: "730", cards: 2 },
     taupo: { locale: "75150", cards: 1 },
+    dubai: { locale: "60005", cards: 100, layout: "responsive" },
+    "abu-dhabi": { locale: "60013", cards: 37, layout: "responsive" },
+    sharjah: { locale: "60007", cards: 10, layout: "responsive" },
+    "ras-al-khaimah": { locale: "60003", cards: 3, layout: "responsive" },
+    fujairah: {
+      layout: "vertical",
+      products: "1093580,1093100,1093651",
+    },
+    amman: { locale: "520", cards: 1, layout: "vertical" },
+    petra: { locale: "106501", cards: 1, layout: "vertical" },
+    cairo: {
+      layout: "vertical",
+      products: "1115362,1106928,1119839,1105891,1115096,1115844,1102154,1104412,1129181,1116286,1101194",
+    },
+    giza: { locale: "274", cards: 8, layout: "responsive" },
+    hurghada: { locale: "44", cards: 15, layout: "responsive" },
+    luxor: {
+      layout: "vertical",
+      products: "1095488,1132779,1102719,1136071,1102460,1107616,1101699,1107619",
+    },
+    "marsa-alam": {
+      layout: "vertical",
+      products: "1095053,1094786,1094078,1094618,1095057",
+    },
+    "sharm-el-sheikh": { locale: "263612", cards: 2, layout: "responsive" },
+    "port-ghalib": { locale: "272593", cards: 2, layout: "responsive" },
+    quseir: { locale: "272993", cards: 5, layout: "responsive" },
+    "rio-de-janeiro": { locale: "61535", cards: 18, layout: "responsive" },
   };
   const destinationWidget = destinationWidgetLocale[city.slug];
 
@@ -181,7 +214,7 @@ function CityPage() {
           <div className="container mx-auto">
             <h2 className="heading-h2 mb-4">Things to do in {city.name}</h2>
             <div className="destination-widget-frame-wrap">
-              <DestinationWidget locale={destinationWidget.locale} cards={destinationWidget.cards} />
+              <DestinationWidget {...destinationWidget} />
             </div>
           </div>
         </section>
@@ -394,7 +427,17 @@ function CityPage() {
   );
 }
 
-function DestinationWidget({ locale, cards }: { locale: string; cards: number }) {
+function DestinationWidget({
+  locale,
+  cards,
+  layout = "responsive",
+  products,
+}: {
+  locale?: string;
+  cards?: number;
+  layout?: "responsive" | "vertical";
+  products?: string;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -404,13 +447,26 @@ function DestinationWidget({ locale, cards }: { locale: string; cards: number })
     const script = document.createElement("script");
     script.async = true;
     script.charset = "utf-8";
-    script.src = `https://tpembd.com/content?currency=USD&trs=575237&shmarker=671328&language=en&locale=${locale}&layout=responsive&cards=${cards}&powered_by=true&campaign_id=89&promo_id=3947`;
+    const params = new URLSearchParams({
+      currency: "USD",
+      trs: "575237",
+      shmarker: "671328",
+      language: "en",
+      layout,
+      powered_by: "true",
+      campaign_id: "89",
+      promo_id: products ? "3948" : "3947",
+    });
+    if (locale) params.set("locale", locale);
+    if (cards) params.set("cards", String(cards));
+    if (products) params.set("product", products);
+    script.src = `https://tpembd.com/content?${params.toString()}`;
     container.appendChild(script);
 
     return () => {
       container.replaceChildren();
     };
-  }, [cards, locale]);
+  }, [cards, layout, locale, products]);
 
   return <div ref={containerRef} className="destination-widget-mount" />;
 }
