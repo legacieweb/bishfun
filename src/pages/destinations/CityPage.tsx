@@ -92,6 +92,27 @@ function CityPage() {
     "port-ghalib": { locale: "272593", cards: 2, layout: "responsive" },
     quseir: { locale: "272993", cards: 5, layout: "responsive" },
     "rio-de-janeiro": { locale: "61535", cards: 18, layout: "responsive" },
+    "buenos-aires": { locale: "60189", cards: 30, layout: "responsive" },
+    "el-calafate": { locale: "83553", cards: 15, layout: "responsive" },
+    "puerto-iguazu": { locale: "30", cards: 2, layout: "responsive" },
+    ushuaia: { locale: "60210", cards: 1, layout: "responsive" },
+    salta: { locale: "60240", cards: 1, layout: "responsive" },
+    bariloche: { locale: "60331", cards: 1, layout: "responsive" },
+    cusco: {
+      layout: "responsive",
+      products: "1000021,1015926,1019653,976581,976578,976576,1000586,1000645,1000148",
+    },
+    "aguas-calientes": { locale: "261863", cards: 9, layout: "responsive" },
+    lima: { locale: "75306", cards: 1, layout: "responsive" },
+    arequipa: { locale: "75334", cards: 1, layout: "responsive" },
+    "new-york": { locale: "260932", cards: 100, layout: "responsive" },
+    "las-vegas": { locale: "82073", cards: 100, layout: "responsive" },
+    "san-francisco": { locale: "1772", cards: 56, layout: "responsive" },
+    "los-angeles": { locale: "81810", cards: 55, layout: "responsive" },
+    orlando: { locale: "79889", cards: 55, layout: "responsive" },
+    chicago: { locale: "80816", cards: 55, layout: "responsive" },
+    miami: { locale: "79868", cards: 54, layout: "responsive" },
+    "san-antonio": { locale: "248671", cards: 54, layout: "responsive" },
   };
   const destinationWidget = destinationWidgetLocale[city.slug];
 
