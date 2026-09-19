@@ -42,6 +42,23 @@ function CityPage() {
     kyoto: { locale: "72420", cards: 13 },
     rome: { locale: "71631", cards: 100 },
     phuket: { locale: "78451", cards: 50 },
+    bangkok: { locale: "78586", cards: 56 },
+    melbourne: { locale: "60426", cards: 67 },
+    sydney: { locale: "60400", cards: 54 },
+    cairns: { locale: "60466", cards: 30 },
+    perth: { locale: "60372", cards: 20 },
+    brisbane: { locale: "91", cards: 15 },
+    "surfers-paradise": { locale: "60401", cards: 14 },
+    "gold-coast": { locale: "60442", cards: 32 },
+    hobart: { locale: "60437", cards: 10 },
+    rotorua: { locale: "75177", cards: 10 },
+    christchurch: { locale: "75166", cards: 10 },
+    auckland: { locale: "75167", cards: 8 },
+    queenstown: { locale: "111798", cards: 8 },
+    "milford-sound": { locale: "2100", cards: 2 },
+    wanaka: { locale: "220811", cards: 3 },
+    "franz-josef": { locale: "730", cards: 2 },
+    taupo: { locale: "75150", cards: 1 },
   };
   const destinationWidget = destinationWidgetLocale[city.slug];
 

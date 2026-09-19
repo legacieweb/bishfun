@@ -2,11 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { notFound } from "@/pages/NotFound";
 import { regions } from "@/data/destinations/regions";
 import { countries, getCountriesByRegion } from "@/data/destinations/countries";
-import { allDestinations } from "@/data/destinations";
-import type { Destination } from "@/types";
 import SEO from "@/ui/components/shared/Seo";
-import { DestinationCard } from "@/ui/components/shared/Cards";
-import { brandConfig } from "@/config/brand";
 
 function DestinationsIndex() {
   return (
@@ -60,24 +56,6 @@ function DestinationsIndex() {
         </div>
       </section>
 
-      <section className="section-sm bg-gray-50">
-        <div className="container mx-auto">
-          <h2 className="heading-h2 mb-6">Featured Destinations</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {allDestinations.slice(0, 12).map((dest) => (
-              <DestinationCard
-                key={dest.slug}
-                slug={dest.slug}
-                name={dest.name}
-                subtitle={dest.countrySlug}
-                image={dest.heroImage}
-                imageAlt={dest.heroImageAlt}
-                size="sm"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }

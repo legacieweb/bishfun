@@ -56,7 +56,7 @@ export const hotels: Hotel[] = [
     name: "Fairmont Royal Pavilion",
     description:
       "A beachfront luxury resort on Barbados featuring colonial-style architecture and expansive ocean views.",
-    destinationSlug: "caribbean",
+    destinationSlug: "barbados",
     address: "St. James, Barbados",
     price: 420,
     originalPrice: 550,
@@ -108,11 +108,7 @@ export const getHotelBySlug = (slug: string): Hotel | undefined =>
   hotels.find((h) => h.slug === slug);
 
 export const getHotelsByDestination = (destinationSlug: string): Hotel[] =>
-  hotels.filter(
-    (h) =>
-      h.destinationSlug === destinationSlug ||
-      destinationSlug === "caribbean" && h.destinationSlug === "caribbean",
-  );
+  hotels.filter((h) => h.destinationSlug === destinationSlug);
 
 export const getFeaturedHotels = (count: number = 4): Hotel[] =>
   hotels.slice(0, count);

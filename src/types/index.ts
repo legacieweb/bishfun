@@ -5,9 +5,7 @@ export type RegionSlug =
   | "north-america"
   | "south-america"
   | "middle-east"
-  | "oceania"
-  | "caribbean"
-  | "central-america";
+  | "oceania";
 
 export interface Region {
   slug: RegionSlug;

@@ -2,7 +2,51 @@ import type { City, Destination, QuickFacts } from "@/types";
 import { countries } from "./countries";
 import { regions } from "./regions";
 
-export const cities: City[] = [
+const additionalCitySeeds = [
+  ["australia", "melbourne", "Melbourne"], ["australia", "cairns", "Cairns"], ["australia", "perth", "Perth"],
+  ["australia", "brisbane", "Brisbane"], ["australia", "surfers-paradise", "Surfers Paradise"], ["australia", "gold-coast", "Gold Coast"], ["australia", "hobart", "Hobart"],
+  ["new-zealand", "rotorua", "Rotorua"], ["new-zealand", "christchurch", "Christchurch"], ["new-zealand", "milford-sound", "Milford Sound"], ["new-zealand", "wanaka", "Wanaka"], ["new-zealand", "franz-josef", "Franz Josef"], ["new-zealand", "taupo", "Taupo"],
+  ["uae", "abu-dhabi", "Abu Dhabi"], ["uae", "sharjah", "Sharjah"], ["uae", "ras-al-khaimah", "Ras al-Khaimah"], ["uae", "fujairah", "Fujairah"],
+  ["jordan", "wadi-rum", "Wadi Rum"], ["jordan", "petra", "Petra"],
+  ["egypt", "cairo", "Cairo"], ["egypt", "giza", "Giza"], ["egypt", "hurghada", "Hurghada"], ["egypt", "luxor", "Luxor"], ["egypt", "marsa-alam", "Marsa Alam"], ["egypt", "sharm-el-sheikh", "Sharm El-Sheikh"], ["egypt", "port-ghalib", "Port Ghalib"], ["egypt", "quseir", "Quseir"],
+  ["brazil", "rio-de-janeiro", "Rio de Janeiro"],
+  ["argentina", "buenos-aires", "Buenos Aires"], ["argentina", "el-calafate", "El Calafate"], ["argentina", "puerto-iguazu", "Puerto Iguazú"], ["argentina", "ushuaia", "Ushuaia"], ["argentina", "salta", "Salta"], ["argentina", "bariloche", "Bariloche"],
+  ["peru", "cusco", "Cusco"], ["peru", "aguas-calientes", "Aguas Calientes"], ["peru", "lima", "Lima"], ["peru", "arequipa", "Arequipa"],
+  ["usa", "new-york", "New York"], ["usa", "las-vegas", "Las Vegas"], ["usa", "san-francisco", "San Francisco"], ["usa", "orlando", "Orlando"], ["usa", "los-angeles", "Los Angeles"], ["usa", "chicago", "Chicago"], ["usa", "miami", "Miami"], ["usa", "san-antonio", "San Antonio"],
+  ["canada", "vancouver", "Vancouver"], ["canada", "niagara-falls", "Niagara Falls"], ["canada", "toronto", "Toronto"], ["canada", "montreal", "Montreal"], ["canada", "calgary", "Calgary"], ["canada", "victoria", "Victoria"], ["canada", "quebec-city", "Quebec City"], ["canada", "ottawa", "Ottawa"],
+  ["mexico", "mexico-city", "Mexico City"], ["mexico", "cancun", "Cancún"], ["mexico", "playa-del-carmen", "Playa del Carmen"], ["mexico", "tulum", "Tulum"], ["mexico", "veracruz", "Veracruz"], ["mexico", "puerto-morelos", "Puerto Morelos"], ["mexico", "cozumel", "Cozumel"], ["mexico", "akumal", "Akumal"],
+  ["indonesia", "bali", "Bali"], ["indonesia", "kuta", "Kuta"], ["indonesia", "ubud", "Ubud"], ["indonesia", "bandung", "Bandung"], ["indonesia", "yogyakarta", "Yogyakarta"], ["indonesia", "denpasar", "Denpasar"], ["indonesia", "south-kuta", "South Kuta"], ["indonesia", "kintamani", "Kintamani"],
+  ["singapore", "singapore", "Singapore"],
+  ["thailand", "bangkok", "Bangkok"], ["thailand", "phuket", "Phuket"], ["thailand", "pattaya", "Pattaya"], ["thailand", "chiang-mai", "Chiang Mai"], ["thailand", "kathu", "Kathu"], ["thailand", "krabi", "Krabi"], ["thailand", "hua-hin", "Hua Hin"], ["thailand", "mueang-phuket", "Mueang Phuket"],
+  ["japan", "tokyo", "Tokyo"], ["japan", "osaka", "Osaka"], ["japan", "kyoto", "Kyoto"], ["japan", "fukuoka", "Fukuoka"], ["japan", "okinawa", "Okinawa"], ["japan", "kobe", "Kobe"], ["japan", "sapporo", "Sapporo"], ["japan", "nagoya", "Nagoya"],
+  ["morocco", "marrakesh", "Marrakesh"],
+  ["south-africa", "cape-town", "Cape Town"], ["south-africa", "johannesburg", "Johannesburg"], ["south-africa", "hazyview", "Hazyview"],
+] as const;
+
+const additionalCities: City[] = additionalCitySeeds.map(([countrySlug, slug, name]) => {
+  const country = countries.find((item) => item.slug === countrySlug);
+
+  return {
+    slug,
+    countrySlug,
+    name,
+    subtitle: country?.name || "",
+    description: `${name} is a memorable base for discovering ${country?.name || "the region"}, combining local character, standout scenery, and easy access to nearby experiences.`,
+    heroImage:
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=85",
+    heroImageAlt: `${name} travel scene`,
+    currency: country?.currency || "USD",
+    currencySymbol: country?.currencySymbol || "$",
+    language: country?.languages.join(", ") || "English",
+    averageStay: "2-4 days",
+    travelStyle: ["culture", "food", "beach", "adventure"],
+    budgetLevel: "mid-range",
+    bestTimeToVisit: country?.bestTimeToVisit || "November to April",
+  };
+});
+
+const rawCities: City[] = [
+  ...additionalCities,
   {
     slug: "tokyo",
     countrySlug: "japan",
@@ -202,6 +246,11 @@ export const cities: City[] = [
     bestTimeToVisit: "September to November and March to May",
   },
 ];
+
+const uniqueCities = new Map<string, City>();
+rawCities.forEach((city) => uniqueCities.set(`${city.countrySlug}:${city.slug}`, city));
+
+export const cities: City[] = [...uniqueCities.values()];
 
 export const getCityBySlug = (slug: string): City | undefined =>
   cities.find((c) => c.slug === slug);

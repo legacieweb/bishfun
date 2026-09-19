@@ -174,17 +174,28 @@ function MobileNav() {
         onClick={toggleNav}
         className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-accent"
         aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-expanded={isOpen}
       >
-        <span className="block w-6 h-0.5 bg-gray-700 mb-1 transition-all duration-250"></span>
-        <span className="block w-6 h-0.5 bg-gray-700 mb-1 transition-all duration-250"></span>
-        <span className="block w-6 h-0.5 bg-gray-700 transition-all duration-250"></span>
+        {isOpen ? (
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        ) : (
+          <>
+            <span className="block w-6 h-0.5 bg-gray-700 mb-1 transition-all duration-250" />
+            <span className="block w-6 h-0.5 bg-gray-700 mb-1 transition-all duration-250" />
+            <span className="block w-6 h-0.5 bg-gray-700 transition-all duration-250" />
+          </>
+        )}
       </button>
 
       <div
         className={clsx(
-          "fixed inset-0 z-50 bg-white transform transition-transform duration-300 md:hidden",
+          "fixed inset-0 z-50 w-full max-w-full overflow-x-hidden bg-white transform transition-transform duration-300 md:hidden",
           isOpen ? "translate-x-0" : "translate-x-full",
         )}
+        aria-hidden={!isOpen}
       >
         <div className="h-full overflow-y-auto pb-20">
           <div className="flex justify-end p-4">
@@ -202,20 +213,25 @@ function MobileNav() {
           <nav className="px-4 space-y-1">
             {navItems.map((item) => (
               <div key={item.path}>
-                <Link
-                  to={item.path}
-                  onClick={closeNav}
-                  className="flex items-center justify-between py-3 text-lg font-medium text-gray-900 hover:bg-gray-100 rounded-lg px-3"
-                >
-                  <span>{item.label}</span>
+                <div className="flex items-center justify-between rounded-lg px-3 hover:bg-gray-100">
+                  <Link
+                    to={item.path}
+                    onClick={closeNav}
+                    className="flex-1 py-3 text-lg font-medium text-gray-900"
+                  >
+                    {item.label}
+                  </Link>
                   {item.label === "Destinations" && (
                     <button
+                      type="button"
                       onClick={() =>
                         setExpandedSection(
                           expandedSection === "destinations" ? null : "destinations",
                         )
                       }
                       className="p-1"
+                      aria-label="Expand destinations"
+                      aria-expanded={expandedSection === "destinations"}
                     >
                       <svg
                         width="20"
@@ -233,7 +249,7 @@ function MobileNav() {
                       </svg>
                     </button>
                   )}
-                </Link>
+                </div>
 
                 {item.label === "Destinations" && expandedSection === "destinations" && (
                   <div className="ml-4 mt-2 space-y-1">
@@ -307,7 +323,7 @@ function MobileNav() {
 
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/20 md:hidden"
+          className="fixed inset-0 z-40 bg-black/20 md:hidden"
           onClick={closeNav}
         />
       )}

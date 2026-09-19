@@ -1,6 +1,34 @@
 import type { Country } from "@/types";
 
+const regionalCountrySeeds: Array<[
+  string,
+  string,
+  Country["regionSlug"],
+  string,
+  string,
+  string,
+  string,
+]> = [
+];
+
+const additionalCountries: Country[] = regionalCountrySeeds.map(
+  ([slug, name, regionSlug, currency, currencySymbol, capital, bestTimeToVisit]) => ({
+    slug,
+    name,
+    regionSlug,
+    description: `${name} offers a memorable mix of welcoming local culture, beautiful landscapes, and experiences worth building a trip around.`,
+    currency,
+    currencySymbol,
+    languages: ["English", "Spanish"],
+    capital,
+    heroImage: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1400&q=85",
+    heroImageAlt: `${name} travel landscape`,
+    bestTimeToVisit,
+  }),
+);
+
 export const countries: Country[] = [
+  ...additionalCountries,
   {
     slug: "kenya",
     name: "Kenya",
@@ -216,7 +244,7 @@ export const countries: Country[] = [
     name: "Mexico",
     regionSlug: "north-america",
     description:
-      "Mexico offers ancient Maya ruins, vibrant Día de los Muertos celebrations, and stunning Pacific and Caribbean coasts.",
+      "Mexico offers ancient Maya ruins, vibrant Día de los Muertos celebrations, and stunning Pacific and Yucatán coasts.",
     currency: "MXN",
     currencySymbol: "$",
     languages: ["Spanish"],

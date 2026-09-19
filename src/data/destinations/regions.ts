@@ -71,24 +71,4 @@ export const regions: Region[] = [
     heroImageAlt: "Sydney Opera House on the harbour",
     countryCount: 14,
   },
-  {
-    slug: "caribbean",
-    name: "Caribbean",
-    description:
-      "Turquoise waters, palm-fringed beaches, and island cultures — the Caribbean is a year-round sun-soaked escape.",
-    heroImage:
-      "https://images.unsplash.com/photo-1637003405426-56ccdf594e3e?q=80&w=1430&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    heroImageAlt: "Caribbean beach with crystal clear waters",
-    countryCount: 13,
-  },
-  {
-    slug: "central-america",
-    name: "Central America",
-    description:
-      "From Guatemala's ancient Maya cities to Costa Rica's rainforests, Central America pulses with biodiversity and adventure.",
-    heroImage:
-      "https://cdn.pixabay.com/photo/2019/02/17/22/50/jungle-4003374_1280.jpg",
-    heroImageAlt: "Jungle canopy with volcanic peak in background",
-    countryCount: 7,
-  },
 ];
