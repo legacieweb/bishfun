@@ -10,11 +10,11 @@ interface LayoutProps {
 
 function Layout({ children }: LayoutProps) {
   const { pathname } = useLocation();
-  const isStaticPage = ["/about", "/privacy", "/terms", "/cookie-policy", "/affiliate-disclosure"].includes(pathname);
+  const isCityPage = pathname.split("/").filter(Boolean).length === 4 && pathname.startsWith("/destinations/");
 
   return (
     <>
-      <PagePreloader pageKey={pathname} />
+      {isCityPage && <PagePreloader pageKey={pathname} />}
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />

@@ -133,6 +133,21 @@ function CityPage() {
     kobe: { locale: "72454", cards: 2, layout: "responsive" },
     sapporo: { locale: "72801", cards: 2, layout: "responsive" },
     nagoya: { locale: "274648", cards: 2, layout: "responsive" },
+    london: { locale: "67458", cards: 100, layout: "responsive" },
+    edinburgh: { locale: "21", cards: 40, layout: "responsive" },
+    liverpool: { locale: "67463", cards: 40, layout: "responsive" },
+    manchester: { locale: "67441", cards: 22, layout: "responsive" },
+    york: { locale: "67204", cards: 22, layout: "responsive" },
+    brighton: { locale: "67570", cards: 22, layout: "responsive" },
+    blackpool: { locale: "67591", cards: 8, layout: "responsive" },
+    belfast: { locale: "67614", cards: 8, layout: "responsive" },
+    barcelona: { locale: "66342", cards: 100, layout: "responsive" },
+    madrid: { locale: "66254", cards: 100, layout: "responsive" },
+    seville: { locale: "65870", cards: 100, layout: "responsive" },
+    valencia: { locale: "65847", cards: 100, layout: "responsive" },
+    malaga: { locale: "32", cards: 20, layout: "responsive" },
+    "palma-de-mallorca": { locale: "65915", cards: 70, layout: "responsive" },
+    tenerife: { locale: "65876", cards: 30, layout: "responsive" },
   };
   const destinationWidget = destinationWidgetLocale[city.slug];
 

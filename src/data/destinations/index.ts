@@ -19,7 +19,6 @@ export const featuredDestinations: Destination[] = [
 export const trendingDestinations: Destination[] = [
   getDestinationBySlug("tokyo")!,
   getDestinationBySlug("kyoto")!,
-  getDestinationBySlug("maasai-mara")!,
   getDestinationBySlug("new-york")!,
   getDestinationBySlug("rome")!,
   getDestinationBySlug("phuket")!,
