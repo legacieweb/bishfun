@@ -125,24 +125,6 @@ const rawCities: City[] = [
     bestTimeToVisit: "June to October and December to March",
   },
   {
-    slug: "maasai-mara",
-    countrySlug: "kenya",
-    name: "Maasai Mara",
-    subtitle: "Kenya",
-    description:
-      "The Maasai Mara National Reserve is famous for the Great Wildebeest Migration and endless safari adventures.",
-    heroImage:
-      "https://images.unsplash.com/photo-1564101160531-4838e8a5f4e7?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    heroImageAlt: "Wildebeest herds crossing the Mara River",
-    currency: "KES",
-    currencySymbol: "KSh",
-    language: "English, Swahili",
-    averageStay: "3-4 days",
-    travelStyle: ["safari", "wildlife", "adventure"],
-    budgetLevel: "luxury",
-    bestTimeToVisit: "July to October (migration season)",
-  },
-  {
     slug: "bangkok",
     countrySlug: "thailand",
     name: "Bangkok",

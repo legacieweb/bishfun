@@ -1,19 +1,27 @@
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import SEO from "@/ui/components/shared/Seo";
 import { brandConfig } from "@/config/brand";
-import { DealCard } from "@/ui/components/shared/Cards";
-import { deals, dealCategories } from "@/data/deals";
-import { isDemoMode } from "@/integrations/travelpayouts";
 
 function Deals() {
-  const [activeCategory, setActiveCategory] = useState(
-    (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("category")) || "all",
-  );
+  const dealsWidgetRef = useRef<HTMLDivElement>(null);
 
-  const filtered = activeCategory === "all"
-    ? deals
-    : deals.filter((d) => d.category === activeCategory);
+  useEffect(() => {
+    const container = dealsWidgetRef.current;
+    if (!container) return;
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.charset = "utf-8";
+    script.src =
+      "https://tpembd.com/content?currency=USD&trs=575237&shmarker=671328&product=1111404%2C973977%2C979887%2C1111286%2C1110665&language=en&layout=vertical&powered_by=true&campaign_id=89&promo_id=3948";
+    container.appendChild(script);
+
+    return () => {
+      script.remove();
+      container.replaceChildren();
+    };
+  }, []);
 
   return (
     <>
@@ -34,58 +42,8 @@ function Deals() {
 
       <section className="section-sm">
         <div className="container mx-auto">
-          <div className="flex flex-wrap gap-2 mb-6">
-            <button
-              onClick={() => setActiveCategory("all")}
-              className={`px-4 py-2 text-sm font-medium rounded-lg ${
-                activeCategory === "all"
-                  ? "bg-accent text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-            >
-              All Deals
-            </button>
-            {dealCategories.map((cat) => (
-              <button
-                key={cat.slug}
-                onClick={() => setActiveCategory(cat.slug)}
-                className={`px-4 py-2 text-sm font-medium rounded-lg ${
-                  activeCategory === cat.slug
-                    ? "bg-accent text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
-              >
-                {cat.name}
-              </button>
-            ))}
+          <div ref={dealsWidgetRef} className="destination-widget-mount">
           </div>
-
-          {filtered.length === 0 ? (
-            <p className="text-center text-gray-500 py-8">
-              No deals available in this category right now. Check back soon.
-            </p>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filtered.map((deal) => (
-                <DealCard
-                  key={deal.slug}
-                  slug={deal.slug}
-                  title={deal.title}
-                  description={deal.description}
-                  type={deal.type}
-                  category={deal.category}
-                  price={deal.salePrice || deal.price}
-                  originalPrice={deal.originalPrice}
-                  currencySymbol={deal.currencySymbol}
-                  discountPercent={deal.discountPercent}
-                  validUntil={deal.validUntil}
-                  image={deal.image}
-                  imageAlt={deal.imageAlt}
-                  isDemo={deal.isDemo}
-                />
-              ))}
-            </div>
-          )}
         </div>
       </section>
     </>

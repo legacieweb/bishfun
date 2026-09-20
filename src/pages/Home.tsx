@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { DestinationCard, GuideCard, ItineraryCard, HotelCard, DealCard } from "@/ui/components/shared/Cards";
+import { DestinationCard, GuideCard, ItineraryCard, HotelCard } from "@/ui/components/shared/Cards";
 import { Newsletter } from "@/ui/components/newsletter/Newsletter";
 import SEO from "@/ui/components/shared/Seo";
 import { brandConfig } from "@/config/brand";
@@ -20,6 +20,7 @@ const getDestinationPath = (citySlug: string): string => {
 
 function Home() {
   const experiencesWidgetRef = useRef<HTMLDivElement>(null);
+  const dealsWidgetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const container = experiencesWidgetRef.current;
@@ -38,13 +39,29 @@ function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    const container = dealsWidgetRef.current;
+    if (!container) return;
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.charset = "utf-8";
+    script.src =
+      "https://tpembd.com/content?currency=USD&trs=575237&shmarker=671328&product=1111404%2C973977%2C979887%2C1111286%2C1110665&language=en&layout=vertical&powered_by=true&campaign_id=89&promo_id=3948";
+    container.appendChild(script);
+
+    return () => {
+      script.remove();
+      container.replaceChildren();
+    };
+  }, []);
+
   const {
     featuredDestinations,
     trendingDestinations,
     featuredGuides,
     featuredItineraries,
     featuredHotels,
-    featuredDeals,
   } = homepageData;
 
   return (
@@ -299,25 +316,7 @@ function Home() {
             <h2 className="heading-h2 text-white">Travel Deals</h2>
             <p className="text-gray-300 mt-2">Curated offers from our travel partners.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredDeals.map((deal) => (
-              <DealCard
-                key={deal.slug}
-                slug={deal.slug}
-                title={deal.title}
-                description={deal.description}
-                type={deal.type}
-                category={deal.category}
-                price={deal.salePrice ?? deal.originalPrice ?? 0}
-                originalPrice={deal.originalPrice}
-                currencySymbol={deal.currencySymbol}
-                discountPercent={deal.discountPercent}
-                validUntil={deal.validUntil}
-                image={deal.image}
-                imageAlt={deal.imageAlt}
-                isDemo={deal.isDemo}
-              />
-            ))}
+          <div ref={dealsWidgetRef} className="destination-widget-mount bg-white text-gray-900">
           </div>
           <div className="text-center mt-8">
             <Link to="/deals" className="btn btn-accent">
