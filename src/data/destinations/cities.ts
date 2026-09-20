@@ -19,8 +19,13 @@ const additionalCitySeeds = [
   ["singapore", "singapore", "Singapore"],
   ["thailand", "bangkok", "Bangkok"], ["thailand", "phuket", "Phuket"], ["thailand", "pattaya", "Pattaya"], ["thailand", "chiang-mai", "Chiang Mai"], ["thailand", "kathu", "Kathu"], ["thailand", "krabi", "Krabi"], ["thailand", "hua-hin", "Hua Hin"], ["thailand", "mueang-phuket", "Mueang Phuket"],
   ["japan", "tokyo", "Tokyo"], ["japan", "osaka", "Osaka"], ["japan", "kyoto", "Kyoto"], ["japan", "fukuoka", "Fukuoka"], ["japan", "okinawa", "Okinawa"], ["japan", "kobe", "Kobe"], ["japan", "sapporo", "Sapporo"], ["japan", "nagoya", "Nagoya"],
+  ["united-kingdom", "london", "London"], ["united-kingdom", "edinburgh", "Edinburgh"], ["united-kingdom", "liverpool", "Liverpool"], ["united-kingdom", "manchester", "Manchester"], ["united-kingdom", "york", "York"], ["united-kingdom", "brighton", "Brighton"], ["united-kingdom", "blackpool", "Blackpool"], ["united-kingdom", "belfast", "Belfast"],
+  ["spain", "barcelona", "Barcelona"], ["spain", "madrid", "Madrid"], ["spain", "seville", "Seville"], ["spain", "valencia", "València"], ["spain", "malaga", "Málaga"], ["spain", "palma-de-mallorca", "Palma de Mallorca"], ["spain", "granada", "Granada"], ["spain", "tenerife", "Tenerife"],
+  ["italy", "rome", "Rome"], ["italy", "venice", "Venice"], ["italy", "florence", "Florence"], ["italy", "milan", "Milan"], ["italy", "naples", "Naples"], ["italy", "turin", "Turin"], ["italy", "palermo", "Palermo"], ["italy", "genoa", "Genoa"],
+  ["france", "paris", "Paris"], ["france", "bordeaux", "Bordeaux"], ["france", "nice", "Nice"], ["france", "lyon", "Lyon"], ["france", "toulouse", "Toulouse"], ["france", "marseille", "Marseille"], ["france", "nantes", "Nantes"], ["france", "avignon", "Avignon"],
   ["morocco", "marrakesh", "Marrakesh"],
   ["south-africa", "cape-town", "Cape Town"], ["south-africa", "johannesburg", "Johannesburg"], ["south-africa", "hazyview", "Hazyview"],
+  ["tanzania", "zanzibar", "Zanzibar"],
 ] as const;
 
 const additionalCities: City[] = additionalCitySeeds.map(([countrySlug, slug, name]) => {
