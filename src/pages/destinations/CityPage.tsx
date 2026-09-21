@@ -4,8 +4,7 @@ import { cities, getCityBySlug } from "@/data/destinations/cities";
 import { countries } from "@/data/destinations/countries";
 import { regions } from "@/data/destinations/regions";
 import SEO from "@/ui/components/shared/Seo";
-import { GuideCard, ExperienceCard, ItineraryCard, HotelCard } from "@/ui/components/shared/Cards";
-import { getGuidesByDestination } from "@/data/guides";
+import { ExperienceCard, ItineraryCard, HotelCard } from "@/ui/components/shared/Cards";
 import { getExperiencesByDestination } from "@/data/experiences";
 import { getItinerariesByDestination } from "@/data/itineraries";
 import { getHotelsByDestination } from "@/data/hotels";
@@ -30,7 +29,6 @@ function CityPage() {
     return null;
   }
 
-  const guides = getGuidesByDestination(city.slug);
   const experiences = getExperiencesByDestination(city.slug);
   const itineraries = getItinerariesByDestination(city.slug);
   const hotels = getHotelsByDestination(city.slug);
@@ -461,31 +459,6 @@ function CityPage() {
           </div>
         </div>
       </section>
-
-      {/* Related Guides */}
-      {guides.length > 0 && (
-        <section className="section bg-gray-50">
-          <div className="container mx-auto">
-            <h2 className="heading-h2 mb-6">Related Guides</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {guides.map((guide) => (
-                <GuideCard
-                  key={guide.slug}
-                  slug={guide.slug}
-                  title={guide.title}
-                  description={guide.description}
-                  image={guide.heroImage}
-                  imageAlt={guide.heroImageAlt}
-                  authorName="Travel Writer"
-                  publishedAt={guide.publishedAt}
-                  readingTime={guide.readingTime}
-                  contentType={guide.contentType}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Plan Your Trip CTA */}
       <section className="section">

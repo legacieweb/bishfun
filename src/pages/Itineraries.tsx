@@ -1,12 +1,10 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "@/ui/components/shared/Seo";
 import { brandConfig } from "@/config/brand";
 import { ItineraryCard } from "@/ui/components/shared/Cards";
-import { itineraries, getFeaturedItineraries } from "@/data/itineraries";
+import { itineraries } from "@/data/itineraries";
 import { getDestinationBySlug } from "@/data/destinations/cities";
-import { isDemoMode } from "@/integrations/travelpayouts";
-import type { Itinerary } from "@/types";
 
 type BudgetFilter = "all" | "budget" | "mid-range" | "luxury";
 
@@ -19,12 +17,42 @@ const budgetFilters: { value: BudgetFilter; label: string }[] = [
 
 function Itineraries() {
   const [activeFilter, setActiveFilter] = useState<BudgetFilter>("all");
-
-  const featured = getFeaturedItineraries(4);
+  const [selectedSlug, setSelectedSlug] = useState(itineraries[0]?.slug || "");
+  const widgetRef = useRef<HTMLDivElement>(null);
   const filtered =
     activeFilter === "all"
       ? itineraries
       : itineraries.filter((i) => i.budgetLevel === activeFilter);
+  const selectedItinerary = filtered.find((item) => item.slug === selectedSlug) || filtered[0];
+
+  useEffect(() => {
+    if (!selectedItinerary || !widgetRef.current) return;
+    const cityLocales: Record<string, { locale: string; cards: number }> = {
+      tokyo: { locale: "72181", cards: 35 },
+      paris: { locale: "66746", cards: 100 },
+      "united-kingdom": { locale: "67458", cards: 100 },
+    };
+    const widget = cityLocales[selectedItinerary.destinationSlug];
+    if (!widget) return;
+    const params = new URLSearchParams({
+      currency: "USD",
+      trs: "575237",
+      shmarker: "671328",
+      language: "en",
+      locale: widget.locale,
+      layout: "responsive",
+      cards: String(widget.cards),
+      powered_by: "true",
+      campaign_id: "89",
+      promo_id: "3947",
+    });
+    const script = document.createElement("script");
+    script.async = true;
+    script.charset = "utf-8";
+    script.src = `https://tpembd.com/content?${params.toString()}`;
+    widgetRef.current.replaceChildren(script);
+    return () => widgetRef.current?.replaceChildren();
+  }, [selectedItinerary]);
 
   const resolveDestinationName = (slug: string): string => {
     const dest = getDestinationBySlug(slug);
@@ -51,13 +79,10 @@ function Itineraries() {
 
       <section className="section-sm">
         <div className="container mx-auto">
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-            <h2 className="heading-h2 mb-0">All Itineraries</h2>
-            {isDemoMode() && (
-              <span className="text-xs text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
-                Demo data
-              </span>
-            )}
+          <div className="mb-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">Build your route</p>
+            <h2 className="heading-h2 mb-2">Choose your pace</h2>
+            <p className="text-gray-600">Start with a curated plan, then browse live tours for its destination.</p>
           </div>
 
           <div className="flex flex-wrap gap-2 mb-8" role="group" aria-label="Filter itineraries">
@@ -79,6 +104,28 @@ function Itineraries() {
                 </button>
               );
             })}
+          </div>
+
+          <div className="mb-10 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm md:p-7">
+            <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">Live in destination</p>
+                <h2 className="heading-h3 mt-1">Tours for your itinerary</h2>
+              </div>
+              <div className="flex flex-wrap gap-2" role="tablist" aria-label="Itinerary destinations">
+                {filtered.map((itinerary) => (
+                  <button
+                    type="button"
+                    key={itinerary.slug}
+                    onClick={() => setSelectedSlug(itinerary.slug)}
+                    className={`rounded-lg px-3 py-2 text-sm font-medium ${selectedItinerary?.slug === itinerary.slug ? "bg-accent text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                  >
+                    {resolveDestinationName(itinerary.destinationSlug)}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div ref={widgetRef} className="destination-widget-mount" />
           </div>
 
           {filtered.length === 0 ? (

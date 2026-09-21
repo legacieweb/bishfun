@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { DestinationCard, GuideCard, ItineraryCard, HotelCard } from "@/ui/components/shared/Cards";
+import { DestinationCard, ItineraryCard, HotelCard } from "@/ui/components/shared/Cards";
 import { Newsletter } from "@/ui/components/newsletter/Newsletter";
 import SEO from "@/ui/components/shared/Seo";
 import { brandConfig } from "@/config/brand";
@@ -59,7 +59,6 @@ function Home() {
   const {
     featuredDestinations,
     trendingDestinations,
-    featuredGuides,
     featuredItineraries,
     featuredHotels,
   } = homepageData;
@@ -218,34 +217,6 @@ function Home() {
             <h2 className="heading-h2">Popular Experiences</h2>
           </div>
           <div ref={experiencesWidgetRef} className="w-full overflow-hidden">
-          </div>
-        </div>
-      </section>
-
-      {/* Travel Inspiration / Guides */}
-      <section className="section">
-        <div className="container mx-auto">
-          <div className="mb-8">
-            <h2 className="heading-h2">Travel Guides</h2>
-            <p className="text-gray-600 mt-2">
-              In-depth guides to help you make informed decisions.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {featuredGuides.map((guide) => (
-              <GuideCard
-                key={guide.slug}
-                slug={guide.slug}
-                title={guide.title}
-                description={guide.description}
-                image={guide.heroImage}
-                imageAlt={guide.heroImageAlt}
-                authorName="Amara Okello"
-                publishedAt={guide.publishedAt}
-                readingTime={guide.readingTime}
-                contentType={guide.contentType}
-              />
-            ))}
           </div>
         </div>
       </section>

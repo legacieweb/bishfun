@@ -3,7 +3,7 @@ import SEO from "@/ui/components/shared/Seo";
 import { brandConfig } from "@/config/brand";
 import { experienceCategories } from "@/data/experiences";
 
-type ExperienceTab = (typeof experienceCategories)[number]["slug"] | "all";
+type ExperienceTab = (typeof experienceCategories)[number]["slug"];
 
 const productIds: Record<ExperienceTab, string> = {
   all: "1113039,1018926,993053,1091593,1055096,1113561,1024541,1020312,1123855,1094266,1119519,1054749,983517,1101222,1035180,1094495,1091620,1091862,1059768,1033997,1013451,1025947,975618,1032480,975455,1094112,1024579,1028026,1070299,1102940,1124299,1017376,1034605,975648,1007609,1095489,975362,1087081,974800,1111518,1095496,1129660,1081774,1039204,1090849,1052050,1113640,1035437,1028740,1117124,1107093,1038172,1104769,1114527,1118824,1056105,1102050,1040707,1097479,1126920,1091669,992525,1121267,1115311,1115769,1116249,1115310,1136788,1110665,1119083,1008200,1120813,975985,1117051,974507,974715,1116729,1111561,1089436,996353,1120100,1091712,1091611,1117703,1118032,976402,1092926,1135849,1132445,1040008,975469,1036989,980711,980053,1118329,1013364,1055901,975468,1121154,1106011,1091587,1120980,1118035,1086491,1064470,1120691,1083404,1085392,1116112,989060,975062,977359,1036103,974267,976069,1012497,1015238,1095488,1013950,978153,1084610,1068222,1071799,976207,1059039,977806,703295,975155,978576,977711,975144,974071,1033998,974502,977880,974427,975453,975904,976058,1111456,1119441,1078479,1121541,1011636,1100695,1100389,1054255,1102719,977218,1114880,1115768,1128460,1073227,1093616,1083441,1118285,1089189,1028433,1118668,1097461,1003349,1094267,1042726,1065661,975218,982295,1136647,974576,1099156,1111529,974376,978274,1126688,1122616,1132514,978273,1078479,1116731,988004,1019882,1019850,1124253,1084617,1128464,982494,989951,975409,977226,1012325,1119570,975113,1017409,1013480,974688,992362,1090399,1010878,983153,1010876,974871,992330,1102937",
@@ -27,7 +27,7 @@ const getWidgetUrl = (category: ExperienceTab) => {
 };
 
 function Experiences() {
-  const [activeCategory, setActiveCategory] = useState<ExperienceTab>("all");
+  const [activeCategory, setActiveCategory] = useState<ExperienceTab>("adventure");
   const widgetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -47,9 +47,9 @@ function Experiences() {
       <section className="pt-12 pb-6"><div className="container mx-auto"><h1 className="heading-display">Experiences</h1><p className="text-lead mt-4">Curated experiences for every travel style.</p></div></section>
       <section className="section-sm"><div className="container mx-auto">
         <div className="flex flex-wrap gap-2 mb-6" role="tablist" aria-label="Experience categories">
-          {(["all", ...experienceCategories.map((category) => category.slug)] as ExperienceTab[]).map((category) => (
+          {experienceCategories.map((category) => (
             <button type="button" role="tab" aria-selected={activeCategory === category} key={category} onClick={() => setActiveCategory(category)} className={`px-4 py-2 text-sm font-medium rounded-lg ${activeCategory === category ? "bg-accent text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>
-              {category === "all" ? "All" : experienceCategories.find((item) => item.slug === category)?.name}
+              {category.name}
             </button>
           ))}
         </div>
