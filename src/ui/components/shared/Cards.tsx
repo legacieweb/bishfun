@@ -312,18 +312,6 @@ export const ExperienceCard = ({
         height={480}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-      <div className="absolute top-3 left-3">
-        <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-white/90 text-gray-800">
-          {category}
-        </span>
-      </div>
-      {isDemo && (
-        <div className="absolute top-3 right-3">
-          <span className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-gray-100 text-gray-700">
-            Demo
-          </span>
-        </div>
-      )}
     </div>
     <div className="mt-3">
       <h3 className="text-lg font-semibold text-gray-900 group-hover:text-accent transition-colors">
@@ -457,11 +445,6 @@ export const DealCard = ({
       )}
     </div>
     <div className="mt-3">
-      <div className="flex items-center gap-2 text-xs text-gray-500 mb-1">
-        <span className="uppercase font-medium">{type}</span>
-        <span>•</span>
-        <span>{category}</span>
-      </div>
       <h3 className="text-lg font-semibold text-gray-900 group-hover:text-accent">{title}</h3>
       <p className="text-sm text-gray-600 mt-1 line-clamp-2">{description}</p>
       <div className="mt-2 flex items-baseline gap-2">
