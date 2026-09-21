@@ -48,7 +48,7 @@ function Experiences() {
       <section className="section-sm"><div className="container mx-auto">
         <div className="flex flex-wrap gap-2 mb-6" role="tablist" aria-label="Experience categories">
           {experienceCategories.map((category) => (
-            <button type="button" role="tab" aria-selected={activeCategory === category} key={category} onClick={() => setActiveCategory(category)} className={`px-4 py-2 text-sm font-medium rounded-lg ${activeCategory === category ? "bg-accent text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>
+            <button type="button" role="tab" aria-selected={activeCategory === category.slug} key={category.slug} onClick={() => setActiveCategory(category.slug)} className={`px-4 py-2 text-sm font-medium rounded-lg ${activeCategory === category.slug ? "bg-accent text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>
               {category.name}
             </button>
           ))}
