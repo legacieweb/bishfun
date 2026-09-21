@@ -47,7 +47,7 @@ function Home() {
     script.async = true;
     script.charset = "utf-8";
     script.src =
-      "https://tpembd.com/content?currency=USD&trs=575237&shmarker=671328&product=1111404%2C973977%2C979887%2C1111286%2C1110665&language=en&layout=vertical&powered_by=true&campaign_id=89&promo_id=3948";
+      "https://tpembd.com/content?currency=USD&trs=575237&shmarker=671328&product=1111404%2C973977%2C979887%2C1111286&language=en&layout=vertical&powered_by=true&campaign_id=89&promo_id=3948";
     container.appendChild(script);
 
     return () => {
